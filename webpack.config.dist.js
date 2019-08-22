@@ -28,26 +28,30 @@ module.exports = {
       commonjs2: "react",
       amd: "react"
     },
-    'react-dom': {
+    "react-native": {
+      root: "react-native",
+      commonjs: "react-native",
+      commonjs2: "react-native",
+      amd: "react-native"
+    },
+    "react-dom": {
       root: "ReactDOM",
-      commonjs2: 'react-dom',
-      commonjs: 'react-dom',
-      amd: 'react-dom',
-      umd: 'react-dom',
+      commonjs2: "react-dom",
+      commonjs: "react-dom",
+      amd: "react-dom",
+      umd: "react-dom"
     }
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        use: [
-          "babel-loader",
-        ],
+        use: ["babel-loader"],
         exclude: [
           path.join(__dirname, "node_modules", "core-js"),
-          path.join(__dirname, "node_modules", "babel-runtime"),
-        ],
-      },
+          path.join(__dirname, "node_modules", "babel-runtime")
+        ]
+      }
     ]
   }
 };

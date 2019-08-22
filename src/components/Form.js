@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import _pick from "lodash/pick";
+import { View } from "react-native";
 import _get from "lodash/get";
 
 import { default as DefaultErrorList } from "./ErrorList";
@@ -12,7 +13,7 @@ import {
   setState,
   getDefaultRegistry,
   deepEquals,
-  toPathSchema,
+  toPathSchema
 } from "../utils";
 import validateFormData, { toErrorList } from "../validate";
 
@@ -25,7 +26,7 @@ export default class Form extends Component {
     safeRenderCompletion: false,
     noHtml5Validate: false,
     ErrorList: DefaultErrorList,
-    omitExtraData: false,
+    omitExtraData: false
   };
 
   constructor(props) {
@@ -68,7 +69,7 @@ export default class Form extends Component {
       ? this.validate(formData, schema, additionalMetaSchemas, customFormats)
       : {
           errors: state.errors || [],
-          errorSchema: state.errorSchema || {},
+          errorSchema: state.errorSchema || {}
         };
     const idSchema = toIdSchema(
       retrievedSchema,
@@ -87,7 +88,7 @@ export default class Form extends Component {
       errors,
       errorSchema,
       additionalMetaSchemas,
-      pathSchema,
+      pathSchema
     };
   }
 
@@ -185,7 +186,7 @@ export default class Form extends Component {
 
       newFormData = this.getUsedFormData(formData, fieldNames);
       state = {
-        formData: newFormData,
+        formData: newFormData
       };
     }
 
@@ -196,7 +197,7 @@ export default class Form extends Component {
       state = {
         formData: newFormData,
         errorSchema: newErrorSchema,
-        errors: toErrorList(newErrorSchema),
+        errors: toErrorList(newErrorSchema)
       };
     }
     setState(this, state, () => {
@@ -272,7 +273,7 @@ export default class Form extends Component {
       ObjectFieldTemplate: this.props.ObjectFieldTemplate,
       FieldTemplate: this.props.FieldTemplate,
       definitions: this.props.schema.definitions || {},
-      formContext: this.props.formContext || {},
+      formContext: this.props.formContext || {}
     };
   }
 
@@ -299,16 +300,16 @@ export default class Form extends Component {
       acceptcharset,
       noHtml5Validate,
       disabled,
-      formContext,
+      formContext
     } = this.props;
 
     const { schema, uiSchema, formData, errorSchema, idSchema } = this.state;
     const registry = this.getRegistry();
     const _SchemaField = registry.fields.SchemaField;
-    const FormTag = tagName ? tagName : "form";
+    // const FormTag = tagName ? tagName : "form";
 
     return (
-      <FormTag
+      <View
         className={className ? className : "rjsf"}
         id={id}
         name={name}
@@ -322,7 +323,8 @@ export default class Form extends Component {
         onSubmit={this.onSubmit}
         ref={form => {
           this.formElement = form;
-        }}>
+        }}
+      >
         {this.renderErrors()}
         <_SchemaField
           schema={schema}
@@ -348,7 +350,7 @@ export default class Form extends Component {
             </button>
           </div>
         )}
-      </FormTag>
+      </View>
     );
   }
 }
@@ -389,6 +391,6 @@ if (process.env.NODE_ENV !== "production") {
     formContext: PropTypes.object,
     customFormats: PropTypes.object,
     additionalMetaSchemas: PropTypes.arrayOf(PropTypes.object),
-    omitExtraData: PropTypes.bool,
+    omitExtraData: PropTypes.bool
   };
 }

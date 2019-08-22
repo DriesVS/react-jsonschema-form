@@ -1,6 +1,6 @@
 {
-  "name": "react-jsonschema-form",
-  "version": "1.7.0",
+  "name": "react-native-jsonschema-form-test",
+  "version": "1.7.4",
   "description": "A simple React component capable of building HTML forms out of a JSON schema.",
   "scripts": {
     "build:lib": "rimraf lib && cross-env NODE_ENV=production babel -d lib/ src/",
@@ -11,7 +11,7 @@
     "dist": "npm run build:lib && npm run build:dist",
     "lint": "eslint src test playground",
     "prepare": "npm run dist",
-    "precommit": "lint-staged",
+    "precommit": "ls",
     "publish-to-gh-pages": "npm run build:playground && gh-pages --dist build/",
     "publish-to-npm": "npm run dist && npm publish",
     "preversion": "npm run build:playground && npm run dist && npm run cs-check && npm run lint",
@@ -40,7 +40,8 @@
     "node": ">=6"
   },
   "peerDependencies": {
-    "react": ">=15"
+    "react": ">=15",
+    "react-native": ">=0.59"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.4.5",
@@ -94,6 +95,7 @@
     "react": "^15.5.0",
     "react-codemirror2": "^4.1.0",
     "react-dom": "^15.3.2",
+    "react-native": "^0.60.5",
     "react-portal": "^4.2.0",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",

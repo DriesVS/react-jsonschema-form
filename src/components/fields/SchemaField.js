@@ -2,6 +2,7 @@ import { ADDITIONAL_PROPERTY_FLAG } from "../../utils";
 import IconButton from "../IconButton";
 import React from "react";
 import PropTypes from "prop-types";
+import { View } from "react-native";
 import * as types from "../../types";
 
 import {
@@ -14,7 +15,7 @@ import {
   getUiOptions,
   isFilesArray,
   deepEquals,
-  getSchemaType,
+  getSchemaType
 } from "../../utils";
 import UnsupportedField from "./UnsupportedField";
 
@@ -26,7 +27,7 @@ const COMPONENT_TYPES = {
   number: "NumberField",
   object: "ObjectField",
   string: "StringField",
-  null: "NullField",
+  null: "NullField"
 };
 
 function getFieldComponent(schema, uiSchema, idSchema, fields) {
@@ -128,19 +129,19 @@ function DefaultTemplate(props) {
     description,
     hidden,
     required,
-    displayLabel,
+    displayLabel
   } = props;
   if (hidden) {
-    return <div className="hidden">{children}</div>;
+    return <View className="hidden">{children}</View>;
   }
 
   return (
     <WrapIfAdditional {...props}>
-      {displayLabel && <Label label={label} required={required} id={id} />}
-      {displayLabel && description ? description : null}
+      {/* {displayLabel && <Label label={label} required={required} id={id} />}
+      {displayLabel && description ? description : null} */}
       {children}
-      {errors}
-      {help}
+      {/* {errors}
+      {help} */}
     </WrapIfAdditional>
   );
 }
@@ -161,7 +162,7 @@ if (process.env.NODE_ENV !== "production") {
     readonly: PropTypes.bool,
     displayLabel: PropTypes.bool,
     fields: PropTypes.object,
-    formContext: PropTypes.object,
+    formContext: PropTypes.object
   };
 }
 
@@ -169,7 +170,7 @@ DefaultTemplate.defaultProps = {
   hidden: false,
   readonly: false,
   required: false,
-  displayLabel: true,
+  displayLabel: true
 };
 
 function WrapIfAdditional(props) {
@@ -182,20 +183,20 @@ function WrapIfAdditional(props) {
     onDropPropertyClick,
     readonly,
     required,
-    schema,
+    schema
   } = props;
   const keyLabel = `${label} Key`; // i18n ?
   const additional = schema.hasOwnProperty(ADDITIONAL_PROPERTY_FLAG);
 
   if (!additional) {
-    return <div className={classNames}>{props.children}</div>;
+    return <View className={classNames}>{props.children}</View>;
   }
 
   return (
-    <div className={classNames}>
-      <div className="row">
-        <div className="col-xs-5 form-additional">
-          <div className="form-group">
+    <View className={classNames}>
+      <View className="row">
+        <View className="col-xs-5 form-additional">
+          <View className="form-group">
             <Label label={keyLabel} required={required} id={`${id}-key`} />
             <LabelInput
               label={label}
@@ -203,12 +204,12 @@ function WrapIfAdditional(props) {
               id={`${id}-key`}
               onChange={onKeyChange}
             />
-          </div>
-        </div>
-        <div className="form-additional form-group col-xs-5">
+          </View>
+        </View>
+        <View className="form-additional form-group col-xs-5">
           {props.children}
-        </div>
-        <div className="col-xs-2">
+        </View>
+        <View className="col-xs-2">
           <IconButton
             type="danger"
             icon="remove"
@@ -218,9 +219,9 @@ function WrapIfAdditional(props) {
             disabled={disabled || readonly}
             onClick={onDropPropertyClick(label)}
           />
-        </div>
-      </div>
-    </div>
+        </View>
+      </View>
+    </View>
   );
 }
 
@@ -234,7 +235,7 @@ function SchemaFieldRender(props) {
     onKeyChange,
     onDropPropertyClick,
     required,
-    registry = getDefaultRegistry(),
+    registry = getDefaultRegistry()
   } = props;
   const { definitions, fields, formContext } = registry;
   const FieldTemplate =
@@ -310,7 +311,7 @@ function SchemaFieldRender(props) {
     "field",
     `field-${type}`,
     errors && errors.length > 0 ? "field-error has-error has-danger" : "",
-    uiSchema.classNames,
+    uiSchema.classNames
   ]
     .join(" ")
     .trim();
@@ -341,7 +342,7 @@ function SchemaFieldRender(props) {
     formContext,
     fields,
     schema,
-    uiSchema,
+    uiSchema
   };
 
   const _AnyOfField = registry.fields.AnyOfField;
@@ -418,7 +419,7 @@ SchemaField.defaultProps = {
   idSchema: {},
   disabled: false,
   readonly: false,
-  autofocus: false,
+  autofocus: false
 };
 
 if (process.env.NODE_ENV !== "production") {
@@ -428,7 +429,7 @@ if (process.env.NODE_ENV !== "production") {
     idSchema: PropTypes.object,
     formData: PropTypes.any,
     errorSchema: PropTypes.object,
-    registry: types.registry.isRequired,
+    registry: types.registry.isRequired
   };
 }
 
