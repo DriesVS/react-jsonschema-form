@@ -220,12 +220,12 @@ export default class Form extends Component {
   };
 
   onSubmit = event => {
-    event.preventDefault();
-    if (event.target !== event.currentTarget) {
-      return;
-    }
+    // event.preventDefault();
+    // if (event.target !== event.currentTarget) {
+    //   return;
+    // }
 
-    event.persist();
+    // event.persist();
     let newFormData = this.state.formData;
 
     const { pathSchema } = this.state;
@@ -278,9 +278,10 @@ export default class Form extends Component {
   }
 
   submit() {
-    if (this.formElement) {
-      this.formElement.dispatchEvent(new Event("submit", { cancelable: true }));
-    }
+    // if (this.formElement) {
+    //   this.formElement.dispatchEvent(new Event("submit", { cancelable: true }));
+    // }
+    this.onSubmit();
   }
 
   render() {
